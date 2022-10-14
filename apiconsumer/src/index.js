@@ -22,6 +22,8 @@ fetch('https://jsonplaceholder.typicode.com/users')
 */
 const HTMLResponse = document.querySelector('#app');
 
+
+
 fetch('https://jsonplaceholder.typicode.com/users')
     // Exito
     .then(response => response.json())  // convertir a json
@@ -31,6 +33,21 @@ fetch('https://jsonplaceholder.typicode.com/users')
     } )    //imprimir los datos en la consola
     .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
 
+    const template = document.createElement('ul');
+
+fetch('https://jsonplaceholder.typicode.com/users')
+    
+    .then(response => response.json())  // convertir a json
+    .then((users) => {
+        users.forEach( (user) => {
+            let elemento = document.createElement('li');
+            elemento.appendChild(document.createTextNode(`<li>${user.name} ${user.email} </li>`));
+            template.appendChild(elemento);
+        })
+        //const tpl = users.map(user => `<li>${user.name} ${user.email} </li>`);
+        HTMLResponse.appendChild(template);
+    } )    //imprimir los datos en la consola
+    .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
 
 
 /*
